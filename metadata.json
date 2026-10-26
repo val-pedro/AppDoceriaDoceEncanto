@@ -1,0 +1,6 @@
+{
+  "name": "Doce Encanto - Ateliê de Doces",
+  "description": "App de gestão de cardápio, vitrine online, estoque e precificação artesanal do Ateliê Doce Encanto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

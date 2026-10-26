@@ -1,0 +1,139 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Doce ou produto cadastrado no cardápio da confeitaria Doce Encanto.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nome do doce ou produto",
+          "maxLength": 120
+        },
+        "category": {
+          "type": "string",
+          "description": "Identificador da categoria",
+          "enum": ["bolos", "brigadeiros", "finos", "pote", "especiais"]
+        },
+        "categoryLabel": {
+          "type": "string",
+          "description": "Nome amigável da categoria",
+          "maxLength": 50
+        },
+        "description": {
+          "type": "string",
+          "description": "Descrição apetitosa do produto",
+          "maxLength": 300
+        },
+        "price": {
+          "type": "number",
+          "description": "Preço de venda unitário em reais"
+        },
+        "cost": {
+          "type": "number",
+          "description": "Custo de produção unitário em reais"
+        },
+        "stock": {
+          "type": "number",
+          "description": "Quantidade atual disponível em estoque"
+        },
+        "minStock": {
+          "type": "number",
+          "description": "Quantidade mínima de alerta de reposição"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unidade de medida comercial",
+          "enum": ["un", "caixa", "kg", "fatia"]
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL da foto principal do doce"
+        },
+        "isOnline": {
+          "type": "boolean",
+          "description": "Se o item está visível na vitrine online"
+        },
+        "isInstantDelivery": {
+          "type": "boolean",
+          "description": "Disponível para pronta entrega imediata"
+        },
+        "isMadeToOrder": {
+          "type": "boolean",
+          "description": "Produção sob encomenda"
+        },
+        "prepTime": {
+          "type": "string",
+          "description": "Prazo padrão de confecção sob encomenda",
+          "maxLength": 30
+        },
+        "badge": {
+          "type": "string",
+          "description": "Selo de destaque",
+          "enum": ["top1", "baixo", "limitada", ""]
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags e selos especiais selecionados"
+        },
+        "salesToday": {
+          "type": "number",
+          "description": "Total de unidades reservadas/vendidas no dia"
+        },
+        "isDraft": {
+          "type": "boolean",
+          "description": "Se é um rascunho salvo"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Data de criação do item"
+        }
+      },
+      "required": ["name", "category", "price", "stock", "unit", "isOnline"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Notificação de alerta de estoque ou vendas do ateliê.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Título da notificação",
+          "maxLength": 100
+        },
+        "description": {
+          "type": "string",
+          "description": "Mensagem detalhada",
+          "maxLength": 250
+        },
+        "time": {
+          "type": "string",
+          "description": "Horário ou timestamp legível"
+        },
+        "isRead": {
+          "type": "boolean",
+          "description": "Se a notificação já foi visualizada"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["stock", "order", "info"]
+        }
+      },
+      "required": ["title", "description", "isRead", "type"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": {
+        "$ref": "#/entities/Product"
+      },
+      "description": "Coleção de doces e produtos do cardápio do Ateliê Doce Encanto"
+    },
+    "/notifications/{notificationId}": {
+      "schema": {
+        "$ref": "#/entities/Notification"
+      },
+      "description": "Coleção de notificações e alertas da confeitaria"
+    }
+  }
+}
